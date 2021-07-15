@@ -1,0 +1,29 @@
+/* body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+} */
+
+img {
+  width: 100px;
+  height: 100px;
+}
+
+h2 {
+  margin: 5px;
+}
+
+p {
+  margin: 5px;
+}
+
+.item {
+  display: inline-block;
+  margin: 20px;
+}
+.checkout {
+  margin: 5px;
+}
