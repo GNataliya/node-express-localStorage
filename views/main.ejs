@@ -2,40 +2,43 @@
 <html>
   <head>
     <title><%= title %></title>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
     <link rel="stylesheet" href="http://localhost:8000/stylesheets/style.css">
   </head>
   <body>
     
-    <div class="item">
-      <img src="http://localhost:8000/images/lettuce-salad.jpg" alt="pic">
-      <h2 class="title">salad</h2>
-      <p>Price:
-        <span class="price">5</span>$
-      </p>
-      <button type="button" class="btn-buy" data-id="1" data-title="salad" data-price="5">Add to bag</button>
+    <div class="itemsList"></div>
+
+    <form action="" method="POST" name="OrderInfo">
+    
+    <div class="result">
+      <table>
+        <thead class="tablesHead">
+          <tr>
+            <th>Photo</th>
+            <th>Title</th>
+            <th>Quantity</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody class="tablesBody"></tbody>
+      </table>
+
+      <div class="total">Total:  <p class="totalResult"></p> $ </div>
+    </div>   
+    
+    <!-- <div class="total">Total: <span class="totalResult"></span></div> -->
+
+    <div class="deliveryInfo">
+      <input type="text" name="clientName" placeholder="your name">
+      <input type="text" name="address" placeholder="delivery address">
+      <input type="text" name="phone" placeholder="phone number">
+      <button type="submit" class="btn-send">Make Order</button>
     </div>
 
-    <div class="item">
-      <img src="http://localhost:8000/images/tomatoes.jpg" alt="pic">
-      <h2>tomatoes</h2>
-      <p>Price:
-        <span class="price">8</span>$
-      </p>
-      <button type="button" class="btn-buy" data-id="2" data-title="tomatoes" data-price="8">Add to bag</button>
-    </div>
     
-    <div class="item">
-      <img src="http://localhost:8000/images/meat.jpg" alt="pic">
-      <h2>meat</h2>
-      <p>Price:
-        <span class="price">26</span>$
-      </p>
-      <button type="button" class="btn-buy" data-id="3" data-title="meat" data-price="26">Add to bag</button>
-    </div> 
-    
-    <button class="checkout">checkout</button>
-    <div class="result"></div>    
+
+  </form>
 
     <script src="./javascripts/mainClient.js"></script>
   </body>
