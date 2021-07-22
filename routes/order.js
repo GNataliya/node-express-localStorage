@@ -7,6 +7,7 @@ const upload = multer();
 router.post('/', upload.none(), async (req, res) => {
     
     const orderData = await req.body;
+    console.log(orderData);
 
     res.json({status: 'ok'});
 });

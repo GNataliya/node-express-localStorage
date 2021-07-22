@@ -1,3 +1,5 @@
+const totalAmount = document.querySelector('.totalResult');
+
 // emiter написанный для данной корзины, не понятно что в средине, 
 // но без него страницу приходится перегружать для обновления инфо заказа
 const ownEmiter = function(){
@@ -44,7 +46,7 @@ const getCartFromStore = () => {
 // Controllers
 // получаем список товара из БД (с сервера)
 const getProducts = async () => {
-const { data } = await axios.get('/product/list');      // server???
+const { data } = await axios.get('/product/list');     
 return data;
 } 
 
@@ -158,7 +160,7 @@ const renderCart = async () => {
             const { dataset } = ev.target; 
             const data = { ... dataset };                       // вернет объект {id, title, price, img}
             addQuantity(data);
-        })
+        });
     });
 
     mainEl.querySelectorAll('.btn-minus').forEach((item) => {   // находим все кнопки - и для каждой работает это событие
@@ -166,7 +168,7 @@ const renderCart = async () => {
         //console.log(ev.target.dataset);
         const { dataset } =ev.target;
         const data = {...dataset} 
-        console.log(data);
+        //console.log(data);
         substractQuantity(data);
         });
     });
@@ -176,10 +178,11 @@ const renderCart = async () => {
         acc += (item.price * item.quantity);
         return acc;
     }, 0);
-    const totalAmount = document.querySelector('.totalResult');
-    // console.log(totalAmount) 
+    // const totalAmount = document.querySelector('.totalResult');
     totalAmount.setAttribute('value', itemSum);             // добавляем элементу атрибут со значением суммы, которую мы просчитали
+    //console.log(totalAmount) 
     totalAmount.innerHTML = itemSum;
+    
 } 
 
 
@@ -192,22 +195,30 @@ const init = () => {
 init();
 
 
+
 // форма со страницы заказа
 const siteForm = document.forms.OrderInfo;
 siteForm.addEventListener('submit', async (ev) => {
     ev.preventDefault();
 
     const formData = new FormData(ev.target);
-
+   
     const storeJson = localStorage.getItem('cart');
-    const totalResult = totalAmount.getAttribute('value');  // получаем значение, которое записали ранее через атрибут
-    // console.log(totalResult)
-    formData.append('Order', storeJson);
-    formData.append('Amount', totalResult);
+    //console.log(storeJson);
+    const amountToPay = totalAmount.getAttribute('value');  // получаем значение, которое записали ранее через атрибут
+    //console.log(amountToPay)
+    formData.append('order', storeJson);
+    formData.append('amount', amountToPay);
 
-    const { data } = await axios.post('/form', formData);
+    const { data } = await axios.post('/order', formData);
 
+     console.log('res:', data)
 });
+
+
+
+
+
 
 // const buyBtns = document.querySelectorAll('.btn-buy');
 
